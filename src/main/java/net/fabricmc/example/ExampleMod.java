@@ -134,6 +134,7 @@ public class ExampleMod implements ModInitializer {
 		JsonObject params = new JsonObject();
 		params.addProperty("game", "MINECRAFT");
 		params.addProperty("game_display_name", "Minecraft Fabric");
+		params.addProperty("developer", "dandabs");
 		postNoResponse("game_metadata", params);
 
 		// register health stat
@@ -141,8 +142,38 @@ public class ExampleMod implements ModInitializer {
 		params.addProperty("game", "MINECRAFT");
 		params.addProperty("event", "HEALTH");
 		params.addProperty("min_value", 0);
-		params.addProperty("max_value", 20);
-		params.addProperty("icon_id", 1);
+		params.addProperty("max_value", 100);
+		params.addProperty("icon_id", 38);
+		params.addProperty("value_optional", false);
+		postNoResponse("register_game_event", params);
+
+		// register hunger stat
+		params = new JsonObject();
+		params.addProperty("game", "MINECRAFT");
+		params.addProperty("event", "HUNGER");
+		params.addProperty("min_value", 0);
+		params.addProperty("max_value", 100);
+		params.addProperty("icon_id", 10);
+		params.addProperty("value_optional", false);
+		postNoResponse("register_game_event", params);
+
+		// register air stat
+		params = new JsonObject();
+		params.addProperty("game", "MINECRAFT");
+		params.addProperty("event", "AIR");
+		params.addProperty("min_value", 0);
+		params.addProperty("max_value", 100);
+		params.addProperty("icon_id", 11);
+		params.addProperty("value_optional", false);
+		postNoResponse("register_game_event", params);
+
+		// register tool damage stat
+		params = new JsonObject();
+		params.addProperty("game", "MINECRAFT");
+		params.addProperty("event", "TOOL_DAMAGE");
+		params.addProperty("min_value", 0);
+		params.addProperty("max_value", 100);
+		params.addProperty("icon_id", 13);
 		params.addProperty("value_optional", false);
 		postNoResponse("register_game_event", params);
 
@@ -163,7 +194,10 @@ public class ExampleMod implements ModInitializer {
 			@Override
 			public void run() {
 				if (MinecraftClient.getInstance().player != null) {
-					postNoResponse("game_event", makeEventArray("HEALTH", Math.round(MinecraftClient.getInstance().player.getHealth())));
+					postNoResponse("game_event", makeEventArray("HEALTH", 5* Math.round(MinecraftClient.getInstance().player.getHealth())));
+					postNoResponse("game_event", makeEventArray("HUNGER", 5* Math.round(MinecraftClient.getInstance().player.getHungerManager().getFoodLevel())));
+					postNoResponse("game_event", makeEventArray("AIR", Math.round(MinecraftClient.getInstance().player.getAir() / 3)));
+					postNoResponse("game_event", makeEventArray("TOOL_DAMAGE", Math.round(MinecraftClient.getInstance().player.getInventory().getMainHandStack().getDamage() / MinecraftClient.getInstance().player.getInventory().getMainHandStack().getMaxDamage()) * 100));
 					LOGGER.info(Math.round(MinecraftClient.getInstance().player.getHealth()));
 				}
 			}
