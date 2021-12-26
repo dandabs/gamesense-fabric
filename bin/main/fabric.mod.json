@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "gamesense",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Gamesense Fabric",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
