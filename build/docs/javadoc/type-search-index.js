@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"net.fabricmc.example.mixin","l":"ExampleMixin"},{"p":"net.fabricmc.example","l":"ExampleMod"}];updateSearchResults();

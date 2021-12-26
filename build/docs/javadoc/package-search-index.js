@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"net.fabricmc.example"},{"l":"net.fabricmc.example.mixin"}];updateSearchResults();
